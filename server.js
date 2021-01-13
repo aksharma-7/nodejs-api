@@ -11,10 +11,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 MongoClient.connect(db.url, {
     useUnifiedTopology: true,
-  }, (err, database) => {
+  }, (err, client) => {
     if(err) return console.log(err);
 
-    require('./app/routes')(app, database);
+    require('./app/routes')(app, client);
 
     app.listen(port, () => {
         console.log("We are live on port: ", port)
